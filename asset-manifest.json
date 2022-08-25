@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/bitcoin-frenzy/static/css/main.be961aa1.css",
-    "main.js": "/bitcoin-frenzy/static/js/main.244726fc.js",
+    "main.js": "/bitcoin-frenzy/static/js/main.162ece33.js",
     "static/media/BITCOIN.gif": "/bitcoin-frenzy/static/media/BITCOIN.42a69c8016ce87b5e871.gif",
     "static/media/bg1.png": "/bitcoin-frenzy/static/media/bg1.7f1c9617af4d6a78c9dc.png",
     "static/media/history.mp3": "/bitcoin-frenzy/static/media/history.b8dcbc35da16bc7fffdc.mp3",
@@ -14,10 +14,10 @@
     "index.html": "/bitcoin-frenzy/index.html",
     "static/media/Cross.svg": "/bitcoin-frenzy/static/media/Cross.036626e3eb915e9ae70558d496dbd7c4.svg",
     "main.be961aa1.css.map": "/bitcoin-frenzy/static/css/main.be961aa1.css.map",
-    "main.244726fc.js.map": "/bitcoin-frenzy/static/js/main.244726fc.js.map"
+    "main.162ece33.js.map": "/bitcoin-frenzy/static/js/main.162ece33.js.map"
   },
   "entrypoints": [
     "static/css/main.be961aa1.css",
-    "static/js/main.244726fc.js"
+    "static/js/main.162ece33.js"
   ]
 }
