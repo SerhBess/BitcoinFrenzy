@@ -11,7 +11,7 @@ export default function Wallet() {
   const bitcoin = useSelector(userBitcoinSelector)
 
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [amount, setAmount] = useState(null)  
+  const [amount, setAmount] = useState('')  
   
   return (
     <div className='px-10 flex flex-col items-center justify-center gap-y-10 h-full relative'>
@@ -71,19 +71,20 @@ export default function Wallet() {
           <input
             type='text'
             className='w-full p-3'
+            autoFocus
             placeholder='0'
-            value={Number(amount)}
-            onChange={(e)=>setAmount(e.target.value)}
+            value={amount}
+            onChange={(e)=>setAmount(Number(e.target.value))}
           />
           <div className='flex justify-center items-center gap-x-8 w-full'>
             <button
               type='button'
               className='px-8 py-8 w-full bg-[#121212CC] text-[#757474] backdrop-blur  group hover:bg-[#f3b841] hover:text-[#121212] transition-all'
               onClick={() => {
-                dispatch(depositByAmount(Number(amount)))
-                dispatch(depositByAmountMessage(Number(amount)))
+                dispatch(depositByAmount(amount || 0))
+                dispatch(depositByAmountMessage(amount || 0))
                 setIsModalOpen(false)
-                setAmount(null)
+                setAmount('')
               }}
             >
               Deposit <span className='text-[#ffdf2e] group-hover:text-[#121212] transition-all'> { amount || 0} </span> USD
@@ -92,10 +93,10 @@ export default function Wallet() {
               type='button'
               className='px-8 py-8 w-full bg-[#121212CC] text-[#757474] backdrop-blur  group hover:bg-[#f3b841] hover:text-[#121212] transition-all'
               onClick={() => {
-                dispatch(withdrawByAmount(Number(amount)))
-                dispatch(withdrawByAmountMessage({usd, amount}))
+                dispatch(withdrawByAmount(amount || 0))
+                dispatch(withdrawByAmountMessage({usd, amount: amount || 0}))
                 setIsModalOpen(false)
-                setAmount(null)
+                setAmount('')
               }}
             >
               Whithdrow <span className='text-[#ffdf2e] group-hover:text-[#121212] transition-all'> { amount || 0} </span> USD
