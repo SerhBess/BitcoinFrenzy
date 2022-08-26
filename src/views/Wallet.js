@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {deposit, withdraw, userUsdSelector, userBitcoinSelector, depositByAmount, withdrawByAmount} from '../redux/slices/balance'
 import { depositByAmountMessage, depositMessage, withdrawByAmountMessage, withdrawMessage } from '../redux/slices/history'
@@ -7,6 +7,7 @@ import { ReactComponent as Cross } from '../images/Cross.svg'
 export default function Wallet() {
 
   const dispatch = useDispatch()
+  const input = useRef()  
   const usd = useSelector(userUsdSelector)
   const bitcoin = useSelector(userBitcoinSelector)
 
@@ -54,15 +55,24 @@ export default function Wallet() {
 
       <button
         type='button'
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => {
+          setIsModalOpen(true)
+          setTimeout(()=>{ input.current.focus() },500)
+        }}
         className='px-12 py-8 bg-[#121212CC] text-xl backdrop-blur w-80 group hover:bg-[#f3b841] hover:text-[#121212] transition-all'
       >
         Deposit or withdraw an <span className='text-[#ffdf2e] group-hover:text-[#121212] transition-all'> arbitrary </span> amount
       </button>
 
+      
       <div
         className={`fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-[#121212cc] z-50 backdrop-blur transition-all ${isModalOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}
-        onClick={(e)=> {if (e.target === e.currentTarget) setIsModalOpen(false)}}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            setIsModalOpen(false)
+            setAmount('')
+          }
+        }}
       >
         <div className='flex flex-col gap-y-12 justify-center items-center bg-[#FFFFFF40] w-[600px] h-96 text-[#121212] p-16 relative'>
           <p className='text-2xl text-center'>
@@ -70,8 +80,9 @@ export default function Wallet() {
           </p>
           <input
             type='text'
-            className='w-full p-3'
+            className='w-full p-3 focus:outline-0'
             autoFocus
+            ref={input}
             placeholder='0'
             value={amount}
             onChange={(e)=>setAmount(Number(e.target.value))}
@@ -105,7 +116,10 @@ export default function Wallet() {
             <button
               type='button'
               className='absolute top-4 right-4 hover:text-[#f3b841] transition'
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => {
+                setIsModalOpen(false)
+                setAmount('')
+              }}
             >
               <Cross width={30} height={30} />
             </button>
