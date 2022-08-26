@@ -90,7 +90,8 @@ export default function Wallet() {
           <div className='flex justify-center items-center gap-x-8 w-full'>
             <button
               type='button'
-              className='px-8 py-8 w-full bg-[#121212CC] text-[#757474] backdrop-blur  group hover:bg-[#f3b841] hover:text-[#121212] transition-all'
+              disabled={isNaN(amount)}
+              className='px-8 py-8 w-full bg-[#121212CC] disabled:opacity-75 text-[#757474] backdrop-blur  group enabled:hover:bg-[#f3b841] enabled:hover:text-[#121212] transition-all'
               onClick={() => {
                 dispatch(depositByAmount(amount || 0))
                 dispatch(depositByAmountMessage(amount || 0))
@@ -98,11 +99,12 @@ export default function Wallet() {
                 setAmount('')
               }}
             >
-              Deposit <span className='text-[#ffdf2e] group-hover:text-[#121212] transition-all'> { amount || 0} </span> USD
+              Deposit <span className='text-[#ffdf2e] enabled:group-hover:text-[#121212] transition-all'> { amount || 0} </span> USD
             </button>
             <button
               type='button'
-              className='px-8 py-8 w-full bg-[#121212CC] text-[#757474] backdrop-blur  group hover:bg-[#f3b841] hover:text-[#121212] transition-all'
+              disabled={isNaN(amount)}
+              className='px-8 py-8 w-full bg-[#121212CC] disabled:opacity-75 text-[#757474] backdrop-blur  group enabled:hover:bg-[#f3b841] enabled:hover:text-[#121212] transition-all'
               onClick={() => {
                 dispatch(withdrawByAmount(amount || 0))
                 dispatch(withdrawByAmountMessage({usd, amount: amount || 0}))
@@ -110,7 +112,7 @@ export default function Wallet() {
                 setAmount('')
               }}
             >
-              Whithdrow <span className='text-[#ffdf2e] group-hover:text-[#121212] transition-all'> { amount || 0} </span> USD
+              Whithdrow <span className='text-[#ffdf2e] enabled:group-hover:text-[#121212] transition-all'> { amount || 0} </span> USD
             </button>
 
             <button
